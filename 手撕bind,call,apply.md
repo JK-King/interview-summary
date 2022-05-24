@@ -1,1 +1,0 @@
-mybind&call&apply.js
