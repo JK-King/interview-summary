@@ -15,15 +15,20 @@ function bubbling(arr) {
 // 插入排序
 function insertSort(arr) {
   const newArr = []
+  // 把数组的第一项放到新数组中，用来比较
   newArr.push(arr[0])
   for (let i = 1; i < arr.length; i++) {
     const A = arr[i]
+    // 先与最后一个比较，大于就终止比较
     for (let j = newArr.length - 1; j >= 0; j--) {
+      // 取出数组中的每一项，与A比较
       const B = newArr[j]
+      // A大于B，就插入到B后边
       if (A > B) {
         newArr.splice(j + 1, 0, A)
         break
       }
+      // 把数组中的所有项都比较完了，没有小于A的，就把A放到首位
       if (j === 0) newArr.splice(0, 0, A)
     }
   }
@@ -41,13 +46,16 @@ function fastSort(arr) {
   let arrLeft = [], arrRight = []
   for (let i = 0; i < arr.length; i++) {
     const item = arr[i]
+    // 比中间值小的放到左边，大的放到右边
     item < middleVal ? arrLeft.push(item) : arrRight.push(item)
   }
+  // 递归处理左右两个数组，并把最终处理的结果拼接成最终数组
   return fastSort(arrLeft).concat(middleVal, fastSort(arrRight))
 }
 
 
 const arr = [12, 8, 24, 16, 1]
+// console.log(arr.sort((a, b) => a - b))
 // bubbling(arr)
 // console.log(arr)
 // console.log(insertSort(arr))
@@ -128,9 +136,9 @@ function fn(n) {
   return result
 }
 
-console.log(fn(3))
-console.log(fn(4))
-console.log(fn(6))
-console.log(fn(10))
-console.log(fn(15))
+// console.log(fn(3))
+// console.log(fn(4))
+// console.log(fn(6))
+// console.log(fn(10))
+// console.log(fn(15))
 

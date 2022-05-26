@@ -48,8 +48,8 @@
 # import和require的区别
 - require，exports/module.exports 是属于CommonJS规范，nodejs中常用
 - import，export/export default 是属于ES6规范
-- require是运行时执行，所以支持动态导入和动态匹配路径
-- import是编译时执行，不支持动态导入和动态匹配路径
+- require是运行时执行，所以支持动态导入和动态匹配路径，是对值对象的拷贝
+- import是编译时执行，不支持动态导入和动态匹配路径，是对值对象的引用
 
 # 事件循环机制，宏任务和微任务有哪些
 - 先执行宏任务，一个宏任务执行完后，查看微任务队列中是否有微任务需要执行，
@@ -73,3 +73,10 @@
 - 多个使用defer的脚本，是按照顺序执行；而async是不能保证顺序的
 - 使用defer的脚本，如果在html解析完成后，脚本还没有下载完成，不会触发DomContentLoaded方法
 - async不能保证和DomContentLoaded的顺序
+
+# 性能优化
+- 提取公共模块
+- CDN引用静态资源及框架(vue，react，lodash)
+- 开启Gzip压缩，图片压缩
+- 按需加载
+- 缓存
