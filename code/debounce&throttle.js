@@ -14,13 +14,13 @@ function debounce(fn, delay) {
 
 // 节流：是在一定的时间间隔内只执行一次，无视后来的回调函数，也不会延长时间间隔
 function throttle(fn, delay) {
-  let flag = true
+  let timer = null
   return function (...args) {
-    if (!flag) return
-    flag = false
-    const timer = setTimeout(() => {
+    if (timer) return
+    timer = setTimeout(() => {
       fn.call(this, ...args)
       clearTimeout(timer)
+      timer = null
     }, delay);
   }
 }
