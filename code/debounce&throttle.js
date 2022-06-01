@@ -25,3 +25,36 @@ function throttle(fn, delay) {
   }
 }
 
+// 时间戳：第一次立即执行
+function throttle1(fn, delay) {
+  const lastTime = 0
+  return function (...args) {
+    let nowTime = Date.now()
+    if (nowTime - lastTime >= delay) {
+      lastTime = nowTime
+      fn.call(this, ...args)
+    }
+  }
+}
+
+// 保证最后一次能立即执行
+function throttle2(fn, delay) {
+  let timer = null
+  let startTime = Date.now()
+  return function (...args) {
+    const nowTime = Date.now()
+    const time = delay - (nowTime - startTime)
+    timer && clearTimeout(timer)
+    if (time <= 0) {
+      fn.call(this, ...args)
+      startTime = Date.now()
+    } else {
+      timer = setTimeout(() => {
+        fn.call(this, ...args)
+        clearTimeout(timer)
+        timer = null
+      }, time);
+    }
+  }
+}
+
